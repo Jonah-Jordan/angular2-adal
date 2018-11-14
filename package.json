@@ -1,10 +1,10 @@
 {
-  "name": "ng2-adal",
-  "version": "2.0.0",
-  "description": "Use Azure AD Library - ADAL in Angular 4 & 2. For Angular 4, use latest version 1.x.x. For Angular 2 use 0.3.1 version.",
+  "name": "angularx-adal",
+  "version": "2.0.1",
+  "description": "Fork of angular2-adal from sureshchahal (fix for adal timeout). Azure AD Library - ADAL in Angular 5",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sureshchahal/angular2-adal.git"
+    "url": "git+https://github.com/Jonah-Jordan/angularx-adal.git"
   },
   "keywords": [
     "angular2",
@@ -22,12 +22,12 @@
     "angular4-adal",
     "adal-angular4"
   ],
-  "author": "Suresh Chahal",
+  "author": "Jonah Jordan",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sureshchahal/angular2-adal/issues"
+    "url": "https://github.com/Jonah-Jordan/angularx-adal/issues"
   },
-  "homepage": "https://github.com/sureshchahal/angular2-adal#readme",
+  "homepage": "https://github.com/Jonah-Jordan/angularx-adal#readme",
   "engines": {
     "node": ">=5.0.0"
   },
@@ -35,16 +35,17 @@
     "gulp": "gulp"
   },
   "dependencies": {
-    "@angular/common": "^4.1.0",
-    "@angular/compiler": "^4.1.0",
-    "@angular/core": "^4.1.0",
-    "@angular/http": "^4.1.0",
-    "@angular/platform-browser": "^4.1.0",
+    "@angular/common": "^7.0.3",
+    "@angular/compiler": "^7.0.3",
+    "@angular/core": "^7.0.3",
+    "@angular/http": "^7.0.3",
+    "@angular/platform-browser": "^7.0.3",
     "@types/adal": "^1.0.22",
     "adal-angular": "1.0.14",
     "reflect-metadata": "^0.1.8",
-    "rxjs": "^5.0.3",
-    "zone.js": "^0.8.11"
+    "rxjs": "^6.3.3",
+    "rxjs-compat": "^6.3.3",
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "del": "^2.2.0",
