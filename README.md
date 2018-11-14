@@ -1,3 +1,7 @@
+# angularx-adal based on ng2-adal
+
+14/11/2018: FIX for Angular 7.
+
 # ng2-adal
 
 `master` branch of this repo is now Angular 4+ compatible. Thanks to @Cyberdada.
