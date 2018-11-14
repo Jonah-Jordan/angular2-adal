@@ -1,11 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Http, Response, Headers, RequestOptionsArgs, RequestOptions, RequestMethod, URLSearchParams} from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import {AdalService} from './adal.service';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/observable/throw';
+import { map, catchError, flatMap } from 'rxjs/operators';
+
 
 @Injectable()
 export class AuthHttp {
@@ -56,25 +54,23 @@ export class AuthHttp {
         options1.method = options.method;
         options1 = options1.merge(options);
         let resource = this.adalService.GetResourceForEndpoint(url);
-        let authenticatedCall: Observable<string>;
+        let authenticatedCall: any;
         if (resource) {
             if (this.adalService.userInfo.isAuthenticated) {
-                authenticatedCall = this.adalService.acquireToken(resource)
-                    .flatMap((token: string) => {
+                authenticatedCall = this.adalService.acquireToken(resource).pipe(flatMap((token: string) => {
                         if (options1.headers == null) {
                             options1.headers = new Headers();
                         }
                         options1.headers.set('Authorization', 'Bearer ' + token);
-                        return this.http.request(url, options1)
-                            .catch(this.handleError);
-                    });
+                        return this.http.request(url, options1).pipe(catchError(this.handleError));
+                    }));
             }
             else {
                 authenticatedCall = Observable.throw(new Error('User Not Authenticated.'));
             }
         }
         else {
-            authenticatedCall = this.http.request(url, options).map(this.extractData).catch(this.handleError);
+            authenticatedCall = this.http.request(url, options).pipe(map(this.extractData), catchError(this.handleError));
         }
 
         return authenticatedCall;
